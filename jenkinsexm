@@ -1,5 +1,5 @@
 pipeline{
-    agent canaranode
+    agent {'canaranode'}
     
     tools{
         maven 'maven3.9.8'
