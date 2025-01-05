@@ -21,14 +21,15 @@ pipeline{
     stages{
         stage('checkout'){
             steps{
-                git branch: '${param.branch}', credentialsId: 'Github_pass', url: 'https://github.com/sreenu11421/maven-web-application.git'
+                git branch: "${param.branch}", credentialsId: 'Github_pass', url: 'https://github.com/sreenu11421/maven-web-application.git'
                 //sh echo "This is Job Name = ${param.jobname}"
             }
         }
-        
+        "
         stage('build'){
             steps{
                 sh "mvn clean package"
+                sh echo "This is Job Name = ${param.jobname}
             }
         }
         
