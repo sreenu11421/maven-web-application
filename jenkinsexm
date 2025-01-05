@@ -4,9 +4,9 @@ pipeline{
     tools{
         maven 'maven3.9.8'
     }
-    triggers {
-  githubPush()
-      }
+   // triggers {
+  //githubPush()
+      //}
 
 
     options {
