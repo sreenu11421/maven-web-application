@@ -1,5 +1,9 @@
 pipeline{
-    agent {'canaranode'}
+    agent {
+       node {
+              label 'canaranode'
+            }
+         }
     
     tools{
         maven 'maven3.9.8'
