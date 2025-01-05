@@ -16,15 +16,15 @@ triggers {
        buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '5')
     }
 
-    parameters {
+    /*parameters {
   choice choices: ['master', 'development', 'stage', 'uat'], name: 'branch'
   string defaultValue: 'pipeline', name: 'jobname'
-        }
+        }*/
     stages{
         stage('checkout'){
             steps{
-                git branch: "${params.branch}", credentialsId: 'a0773f40-f4ff-47b7-a9cd-f3616be08253', url: 'https://github.com/sreenu11421/maven-web-application.git'
-                sh "echo This is Job Name = ${params.jobname}"
+                git branch: 'development', credentialsId: 'a0773f40-f4ff-47b7-a9cd-f3616be08253', url: 'https://github.com/sreenu11421/maven-web-application.git'
+                //sh "echo This is Job Name = ${params.jobname}"
             }
         }
       
