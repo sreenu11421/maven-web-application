@@ -25,11 +25,11 @@ pipeline{
                 //sh echo "This is Job Name = ${param.jobname}"
             }
         }
-        "
+        
         stage('build'){
             steps{
                 sh "mvn clean package"
-                sh echo "This is Job Name = ${param.jobname}
+                sh echo "This is Job Name = ${param.jobname}"
             }
         }
         
