@@ -29,12 +29,12 @@ pipeline{
         
         stage('testandbuild'){
             steps{
-                parallel{
+                parallel(
                     runtest: {
                       sh "mvn clean test"},
                     build: {
                       sh "mvn clean package"}
-            }
+            )
                 //sh "mvn clean package"
                 //sh echo "This is Job Name = ${param.jobname}"
             }
