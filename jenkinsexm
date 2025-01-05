@@ -1,9 +1,5 @@
 pipeline{
-    agent {
-       node {
-              label 'node'
-            }
-         }
+    agent any
     
     tools{
         maven 'maven3.9.8'
@@ -45,11 +41,15 @@ triggers {
                 //sh echo "This is Job Name = ${param.jobname}"
             }
         }
-        
+        stage('UploadArtifactsIntoNexus'){
+         steps{
+          sh  "mvn clean deploy"
+              }
+          }
         stage('deploy'){
             steps{
                 sshagent(['e00fef62-6b94-41ab-bb9a-906c6407f1bf']) {
-                    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@65.1.130.70:/opt/tomcat/webapps/"
+                    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.111.52.96:/opt/tomcat/webapps/"
                    }
             }
         }
