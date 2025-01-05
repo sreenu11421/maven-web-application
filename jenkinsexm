@@ -1,19 +1,30 @@
-node{
-    def mavenhome = tool name: 'maven3.9.8'
+pipeline{
+    agent any
     
-    stage('Checkoutcode'){
-        git branch: 'development', credentialsId: 'a0773f40-f4ff-47b7-a9cd-f3616be08253', url: 'https://github.com/sreenu11421/maven-web-application.git'
+    tools{
+        maven 'maven3.9.8'
     }
     
-    stage('build'){
-        sh "${mavenhome}/bin/mvn clean package"
-    }
     
-    stage('deploy'){
-        sshagent(['e00fef62-6b94-41ab-bb9a-906c6407f1bf']) {
-              sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.234.29.64:/opt/tomcat/webapps/"
+    stages{
+        stage('checkout'){
+            steps{
+                git branch: 'development', credentialsId: 'Github_pass', url: 'https://github.com/sreenu11421/maven-web-application.git'
             }
+        }
         
+        stage('build'){
+            steps{
+                sh "mvn clean package"
+            }
+        }
+        
+        stage('deploy'){
+            steps{
+                sshagent(['e00fef62-6b94-41ab-bb9a-906c6407f1bf']) {
+                    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.234.29.64:/opt/tomcat/webapps/"
+                   }
+            }
+        }
     }
-    
 }
