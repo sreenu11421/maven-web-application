@@ -1,5 +1,5 @@
 pipeline{
-    agent any
+    agent canaranode
     
     tools{
         maven 'maven3.9.8'
@@ -45,7 +45,7 @@ triggers {
         stage('deploy'){
             steps{
                 sshagent(['e00fef62-6b94-41ab-bb9a-906c6407f1bf']) {
-                    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.234.29.64:/opt/tomcat/webapps/"
+                    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@65.1.130.70:/opt/tomcat/webapps/"
                    }
             }
         }
