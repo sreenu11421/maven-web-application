@@ -35,9 +35,9 @@ metadata:
   name: mavenwebappsvc
   namespace: dev
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: mavenwebapp
   ports:
   - port: 80
-    targetPort: 9090
+    targetPort: 8080
